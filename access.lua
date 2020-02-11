@@ -16,6 +16,7 @@ local cb_scheme         = ngx.var.ngo_callback_scheme or scheme
 local cb_server_name    = ngx.var.ngo_callback_host or ngx.var.server_name
 local cb_uri            = ngx.var.ngo_callback_uri or "/_oauth"
 local cb_url            = cb_scheme .. "://" .. cb_server_name .. cb_uri
+local auth_prompt       = ngx.var.ngo_auth_prompt or "none"
 local redirect_url      = cb_scheme .. "://" .. cb_server_name .. ngx.var.request_uri
 local signout_uri       = ngx.var.ngo_signout_uri or "/_signout"
 local extra_validity    = tonumber(ngx.var.ngo_extra_validity or "0")
@@ -191,6 +192,7 @@ local function redirect_to_auth()
     client_id     = client_id,
     scope         = "email",
     response_type = "code",
+    prompt        = auth_prompt,
     redirect_uri  = cb_url,
     state         = redirect_url,
     login_hint    = domain,

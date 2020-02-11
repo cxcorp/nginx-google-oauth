@@ -24,6 +24,7 @@ server {
 
     set_by_lua $ngo_callback_scheme    'return os.getenv("NGO_CALLBACK_SCHEME")';
     set_by_lua $ngo_callback_uri       'return os.getenv("NGO_CALLBACK_URI")';
+    set_by_lua $ngo_auth_prompt        'return os.getenv("NGO_AUTH_PROMPT")';
     set_by_lua $ngo_signout_uri        'return os.getenv("NGO_SIGNOUT_URI")';
     set_by_lua $ngo_client_id          'return os.getenv("NGO_CLIENT_ID")';
     set_by_lua $ngo_client_secret      'return os.getenv("NGO_CLIENT_SECRET")';

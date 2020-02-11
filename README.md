@@ -34,6 +34,7 @@ server {
   set $ngo_token_secret      "a very long randomish string";
   set $ngo_secure_cookies    "true";
   set $ngo_http_only_cookies "true";
+  set $ngo_auth_prompt       "none";
 
   access_by_lua_file "/etc/nginx/lua/nginx-google-oauth/access.lua";
 }
@@ -47,6 +48,9 @@ variables are:
 - **$ngo_callback_scheme** The scheme for the callback URL,
   defaults to that of the request (e.g. `https`).
 - **$ngo_callback_uri** The URI for the callback, defaults to `/_oauth`.
+- **$ngo_auth_prompt** Defaults to `none`. The `prompt` value of the passed to the OAuth2 auth
+  request. Set to `select_account` or `select_account consent` to force an
+  account selection.
 - **$ngo_signout_uri** The URI for sign-out endpoint.
 - **$ngo_client_id** This is the client id key.
 - **$ngo_client_secret** This is the client secret.
@@ -220,6 +224,7 @@ Docker image has the following env variables for configuration:
 * `NGO_CALLBACK_HOST` is the value of `$ngo_callback_host`.
 * `NGO_CALLBACK_SCHEME` is the value of `$ngo_callback_scheme`.
 * `NGO_CALLBACK_URI` is the value of `$ngo_callback_uri`.
+* `NGO_AUTH_PROMPT` is the value of `$ngo_auth_prompt`.
 * `NGO_SIGNOUT_URI` is the value of `$ngo_signout_uri`.
 * `NGO_CLIENT_ID` is the value of `$ngo_client_id`, required.
 * `NGO_CLIENT_SECRET` is the value of `$ngo_client_secret`, required.
